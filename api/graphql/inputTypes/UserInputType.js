@@ -1,6 +1,5 @@
 const {
   GraphQLInputObjectType,
-  GraphQLInt,
   GraphQLNonNull,
   GraphQLString,
 } = require('graphql');
@@ -10,7 +9,7 @@ const UserInputType = (type) => {
   let allGraphFields = {};
   const standardGraphFields = {
     id: {
-      type: new GraphQLNonNull(GraphQLInt),
+      type: new GraphQLNonNull(GraphQLString),
     },
   };
 
@@ -23,7 +22,10 @@ const UserInputType = (type) => {
     case 'update':
       allGraphFields = {
         ...standardGraphFields,
-        username: {
+        lastName: {
+          type: GraphQLString,
+        },
+        firstName: {
           type: GraphQLString,
         },
         email: {

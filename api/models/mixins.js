@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 const Sequelize = require('sequelize');
 const uuid = require('uuid/v4');
 
@@ -7,24 +9,42 @@ const id = {
   primaryKey: true,
   autoIncrement: false,
   unique: true,
-  defaultValue: Sequelize.UUIDV4
+  defaultValue: Sequelize.UUIDV4,
 };
 
 /* YourModel.beforeCreate(setIdUuid); */
-const setIdUuid = entry => entry.id = uuid();
+const setIdUuid = (entry) => {
+  entry.id = uuid();
+};
 
 /* YourModel.afterUpdate(setIdUuid); */
-const setUpdatedAt = entry => entry.updatedAt =
-  Sequelize.literal('CURRENT_TIMESTAMP');
+const setUpdatedAt = (entry) => {
+  entry.updatedAt = Sequelize.literal('CURRENT_TIMESTAMP');
+};
 
 const systemDateTypes = {
-  createdAt: {
+  created_at: {
+    name: 'createdAt',
     type: Sequelize.DATE,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   },
-  updatedAt: {
+  updated_at: {
+    name: 'updatedAt',
     type: Sequelize.DATE,
   },
 };
 
-module.exports = { id, setIdUuid, setUpdatedAt, systemDateTypes };
+const createdBy = {
+  created_by: {
+    name: 'createdBy',
+    type: Sequelize.UUID,
+  },
+};
+
+module.exports = {
+  id,
+  createdBy,
+  setIdUuid,
+  setUpdatedAt,
+  systemDateTypes,
+};

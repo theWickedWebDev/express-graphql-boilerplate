@@ -1,21 +1,11 @@
-const {
-  createBlade,
-  updateBlade,
-  deleteBlade,
-} = require('./BladeMutation');
-
-const {
-  createPower,
-  updatePower,
-  deletePower,
-} = require('./PowerMutation');
+const BladeMutation = require('./BladeMutation');
+const PowerMutation = require('./PowerMutation');
+const EquipmentTypeMutation = require('./EquipmentTypeMutation');
+const UserMutation = require('./UserMutation');
 
 module.exports = {
-  createBlade,
-  updateBlade,
-  deleteBlade,
-
-  createPower,
-  updatePower,
-  deletePower,
+  ...BladeMutation,
+  ...EquipmentTypeMutation,
+  ...PowerMutation,
+  ...UserMutation,
 };

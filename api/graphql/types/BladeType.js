@@ -1,6 +1,5 @@
 const {
   GraphQLObjectType,
-  GraphQLInt,
   GraphQLString,
 } = require('graphql');
 
@@ -16,4 +15,4 @@ const BladeType = new GraphQLObjectType({
   }),
 });
 
-module.exports = { BladeType: BladeType };
+module.exports = { BladeType };

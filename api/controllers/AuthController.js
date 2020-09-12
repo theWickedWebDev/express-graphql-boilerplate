@@ -8,6 +8,8 @@ const AuthController = () => {
       email,
       password,
       password2,
+      firstName,
+      lastName,
     } = req.body;
 
     if (password === password2) {
@@ -15,6 +17,8 @@ const AuthController = () => {
         const user = await User.create({
           email,
           password,
+          firstName,
+          lastName,
         });
         const token = authService().issue({ id: user.id });
 

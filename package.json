@@ -51,7 +51,8 @@
     "pg": "^8.3.3",
     "pg-hstore": "^2.3.3",
     "sequelize": "^5.21.9",
-    "sqlite3": "^4.0.4"
+    "sqlite3": "^4.0.4",
+    "uuid": "^8.3.0"
   },
   "devDependencies": {
     "cross-env": "^5.2.0",

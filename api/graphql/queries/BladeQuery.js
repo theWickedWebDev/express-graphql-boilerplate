@@ -21,4 +21,4 @@ const bladeQuery = {
   resolve: (user, args) => Blade.findAll({ where: args }),
 };
 
-module.exports = { bladeQuery: bladeQuery };
+module.exports = { bladeQuery };

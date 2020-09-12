@@ -4,15 +4,15 @@ const {
   systemDateTypes,
   id,
   setIdUuid,
-  createdBy,
   setUpdatedAt,
+  createdBy,
 } = require('./mixins');
 
-const tableName = 'blades';
+const tableName = 'brands';
 
-const { LawnMower } = require('./LawnMower');
+const { Model } = require('./Model');
 
-const Blade = sequelize.define('Blade', {
+const Brand = sequelize.define('Brand', {
   id,
   value: {
     type: Sequelize.STRING(30),
@@ -22,12 +22,12 @@ const Blade = sequelize.define('Blade', {
   ...systemDateTypes,
 }, { tableName });
 
-Blade.beforeCreate(setIdUuid);
-Blade.afterUpdate(setUpdatedAt);
+Brand.beforeCreate(setIdUuid);
+Brand.afterUpdate(setUpdatedAt);
 
-Blade.hasMany(LawnMower, {
-  foreignKey: 'bladeId',
+Brand.hasMany(Model, {
+  foreignKey: 'brandId',
   constraints: false,
 });
 
-module.exports = { Blade };
+module.exports = { Brand };

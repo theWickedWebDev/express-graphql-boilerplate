@@ -1,5 +1,4 @@
 const {
-  GraphQLInt,
   GraphQLString,
   GraphQLList,
 } = require('graphql');
@@ -12,26 +11,18 @@ const userQuery = {
   args: {
     id: {
       name: 'id',
-      type: GraphQLInt,
+      type: GraphQLString,
     },
-    username: {
-      name: 'username',
+    firstName: {
+      name: 'firstName',
+      type: GraphQLString,
+    },
+    lastName: {
+      name: 'lastName',
       type: GraphQLString,
     },
     email: {
       name: 'email',
-      type: GraphQLString,
-    },
-    notes: {
-      name: 'notes',
-      type: GraphQLString,
-    },
-    createdAt: {
-      name: 'createdAt',
-      type: GraphQLString,
-    },
-    updatedAt: {
-      name: 'updatedAt',
       type: GraphQLString,
     },
   },

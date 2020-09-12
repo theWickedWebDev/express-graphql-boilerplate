@@ -13,7 +13,6 @@ const systemDateTypes = {
 
 const id = {
   type: GraphQLString,
-  resolve: ({ id }) => id,
 };
 
 module.exports = { systemDateTypes, id };

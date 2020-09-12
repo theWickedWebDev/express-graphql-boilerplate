@@ -9,27 +9,32 @@ const {
   createdBy,
 } = require('./mixins');
 
+const { Lawn } = require('./Lawn');
 const { Equipment } = require('./Equipment');
 
-const tableName = 'power';
+const tableName = 'properties';
 
-const Power = sequelize.define('Power', {
+const Property = sequelize.define('Property', {
   id,
-  type: {
+  name: {
     type: Sequelize.STRING(36),
     unique: true,
   },
-  createdBy: { type: Sequelize.UUID },
   ...createdBy,
   ...systemDateTypes,
 }, { tableName });
 
-Power.beforeCreate(setIdUuid);
-Power.afterUpdate(setUpdatedAt);
+Property.beforeCreate(setIdUuid);
+Property.afterUpdate(setUpdatedAt);
 
-Power.hasMany(Equipment, {
-  foreignKey: 'powerId',
+Property.hasMany(Lawn, {
+  foreignKey: 'propertyId',
   constraints: false,
 });
 
-module.exports = { Power };
+Property.hasMany(Equipment, {
+  foreignKey: 'propertyId',
+  constraints: false,
+});
+
+module.exports = { Property };

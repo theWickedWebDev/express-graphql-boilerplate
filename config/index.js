@@ -6,5 +6,5 @@ module.exports = {
   publicRoutes,
   privateRoutes,
   port: process.env.PORT || '2017',
-  useAuthentication: false,
+  useAuthentication: true,
 };
