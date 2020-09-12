@@ -47,7 +47,12 @@ api.use(bodyParser.json());
 api.use('/rest', mappedRoutes);
 
 // private GraphQL API
-api.post('/graphql', (req, res, next) => auth(req, res, next));
+if (config.useAuthentication) {
+  const authenticate = (req, res, next) => auth(req, res, next);
+  api.post('/graphql', authenticate);
+} else {
+  api.post('/graphql');
+}
 
 const graphQLServer = new ApolloServer({
   schema,

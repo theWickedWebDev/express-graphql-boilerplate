@@ -1,7 +1,7 @@
-const { Note } = require('./Note');
-const { User } = require('./User');
+const { Blade } = require('./Blade');
+const { Power } = require('./Power');
 
 module.exports = {
-  Note,
-  User,
+  Blade,
+  Power,
 };

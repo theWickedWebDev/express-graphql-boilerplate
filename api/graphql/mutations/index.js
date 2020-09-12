@@ -1,19 +1,21 @@
 const {
-  createNote,
-  updateNote,
-  deleteNote,
-} = require('./NoteMutation');
+  createBlade,
+  updateBlade,
+  deleteBlade,
+} = require('./BladeMutation');
+
 const {
-  createUser,
-  updateUser,
-  deleteUser,
-} = require('./UserMutation');
+  createPower,
+  updatePower,
+  deletePower,
+} = require('./PowerMutation');
 
 module.exports = {
-  createNote,
-  updateNote,
-  deleteNote,
-  createUser,
-  updateUser,
-  deleteUser,
+  createBlade,
+  updateBlade,
+  deleteBlade,
+
+  createPower,
+  updatePower,
+  deletePower,
 };

@@ -1,7 +1,7 @@
-const { NoteType } = require('./NoteType');
-const { UserType } = require('./UserType');
+const { BladeType } = require('./BladeType');
+const { PowerType } = require('./PowerType');
 
 module.exports = {
-  NoteType,
-  UserType,
+  BladeType,
+  PowerType,
 };
