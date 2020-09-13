@@ -14,7 +14,9 @@ const lawnQuery = {
     propertyId: { type: GraphQLString },
     name: { type: GraphQLString },
   },
-  resolve: (user, args) => Lawn.findAll({ where: args }),
+  resolve: (user, args, { userId }) => {
+    return Lawn.findAll({where: args});
+  },
 };
 
 module.exports = { lawnQuery };
