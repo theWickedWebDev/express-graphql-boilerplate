@@ -41,11 +41,11 @@ const updatePower = {
 
     if (!foundPower) {
       throw new Error(`Power with id: ${id} not found!`);
+    } else {
+      Power.update({ type }, { where: { id }});
     }
 
-    const updatedPower = merge(foundPower, { type });
-
-    return foundPower.update(updatedPower);
+    return merge(foundPower, { type });
   },
 };
 
@@ -53,19 +53,19 @@ const deletePower = {
   type: PowerType,
   description: 'The mutation that allows you to delete a existing Power by Id',
   args: {
-    id: {
-      name: 'id',
-      type: new GraphQLNonNull(GraphQLInt),
+    type: {
+      name: 'type',
+      type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (_, { id }) => {
-    const foundPower = await Power.findByPk(id);
+  resolve: async (_, { type }) => {
+    const foundPower = await Power.findOne({ where: { type }});
 
     if (!foundPower) {
       throw new Error(`Power with id: ${id} not found!`);
     }
 
-    await Power.destroy({ where: { id } });
+    await Power.destroy({ where: { type } });
 
     return foundPower;
   },

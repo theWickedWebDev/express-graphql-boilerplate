@@ -10,14 +10,8 @@ const { EquipmentType } = require('../../models');
 const equipmentTypeQuery = {
   type: new GraphQLList(EquipmentTypeType),
   args: {
-    id: {
-      name: 'id',
-      type: GraphQLInt,
-    },
-    type: {
-      name: 'type',
-      type: GraphQLString,
-    },
+    id: { type: GraphQLInt },
+    value: { type: GraphQLString },
   },
   resolve: (user, args) => EquipmentType.findAll({ where: args }),
 };

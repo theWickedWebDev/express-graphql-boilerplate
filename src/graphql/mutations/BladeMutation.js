@@ -30,24 +30,24 @@ const updateBlade = {
     id: {
       name: 'id',
       type: new GraphQLNonNull(GraphQLID),
+      allowNull: true,
     },
     value: {
       name: 'value',
       type: new GraphQLNonNull(GraphQLString),
+      allowNull: true,
     },
   },
   resolve: async (_, { id, value }) => {
     const foundBlade = await Blade.findByPk(id);
 
     if (!foundBlade) {
-      throw new Error(`Blade with id: ${id} not found!`);
+      throw new Error(`Blade not found!`);
+    } else {
+      Blade.update({ value }, { where: { id }})
     }
 
-    const updatedBlade = merge(foundBlade, {
-      value,
-    });
-
-    return foundBlade.update(updatedBlade);
+    return merge(foundBlade, { value });
   },
 };
 
@@ -55,23 +55,19 @@ const deleteBlade = {
   type: BladeType,
   description: 'The mutation that allows you to delete a existing Blade by Id',
   args: {
-    id: {
-      name: 'id',
-      type: new GraphQLNonNull(GraphQLInt),
+    value: {
+      name: 'value',
+      type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (value, { id }) => {
-    const foundBlade = await Blade.findByPk(id);
+  resolve: async (value, args) => {
+    const foundBlade = await Blade.findOne({ where: args });
 
     if (!foundBlade) {
-      throw new Error(`Blade with id: ${id} not found!`);
+      throw new Error(`Blade not found!`);
     }
 
-    await Blade.destroy({
-      where: {
-        id,
-      },
-    });
+    await Blade.destroy({ where: args });
 
     return foundBlade;
   },

@@ -13,7 +13,7 @@ const tableName = 'equipment_types';
 
 const EquipmentType = sequelize.define('EquipmentType', {
   id,
-  type: {
+  value: {
     type: Sequelize.STRING(36),
     unique: true,
   },

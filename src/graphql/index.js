@@ -3,16 +3,14 @@ const {
   GraphQLObjectType,
 } = require('graphql');
 
-const { bladeQuery } = require('./queries');
+const queries = require('./queries');
 
 const mutations = require('./mutations');
 
 const RootQuery = new GraphQLObjectType({
   name: 'rootQuery',
   description: 'This is the root query which holds all possible READ entrypoints for the GraphQL API',
-  fields: () => ({
-    Blade: bladeQuery,
-  }),
+  fields: () => queries,
 });
 
 const RootMutation = new GraphQLObjectType({

@@ -10,7 +10,7 @@ const EquipmentTypeType = new GraphQLObjectType({
   description: 'This represents an EquipmentType',
   fields: () => ({
     id,
-    type: { type: GraphQLString },
+    value: { type: GraphQLString },
     ...systemDateTypes,
   }),
 });

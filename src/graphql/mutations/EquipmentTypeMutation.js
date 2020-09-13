@@ -13,13 +13,13 @@ const createEquipmentType = {
   type: EquipmentTypeType,
   description: 'The mutation that allows you to create a new EquipmentType',
   args: {
-    type: {
-      name: 'type',
+    value: {
+      name: 'value',
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: (_, { type }) => (
-    EquipmentType.create({ type })
+  resolve: (_, { value }) => (
+    EquipmentType.create({ value })
   ),
 };
 
@@ -31,41 +31,40 @@ const updateEquipmentType = {
       name: 'id',
       type: new GraphQLNonNull(GraphQLID),
     },
-    type: {
-      name: 'type',
+    value: {
+      name: 'value',
       type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (_, { id, type }) => {
+  resolve: async (_, { id, value }) => {
     const foundEquipmentType = await EquipmentType.findByPk(id);
 
     if (!foundEquipmentType) {
       throw new Error(`EquipmentType with id: ${id} not found!`);
+    } else {
+      EquipmentType.update({ value }, { where: { id }});
     }
 
-    const updatedEquipmentType = merge(foundEquipmentType, { type });
-
-    return foundEquipmentType.update(updatedEquipmentType);
-  },
+    return merge(foundEquipmentType, { value });
+    },
 };
 
 const deleteEquipmentType = {
   type: EquipmentTypeType,
   description: 'The mutation that allows you to delete a existing EquipmentType by Id',
   args: {
-    id: {
-      name: 'id',
-      type: new GraphQLNonNull(GraphQLInt),
+    value: {
+      type: new GraphQLNonNull(GraphQLString),
     },
   },
-  resolve: async (_, { id }) => {
-    const foundEquipmentType = await EquipmentType.findByPk(id);
+  resolve: async (_, { value }) => {
+    const foundEquipmentType = await EquipmentType.findOne({where: { value }});
 
     if (!foundEquipmentType) {
-      throw new Error(`EquipmentType with id: ${id} not found!`);
+      throw new Error(`EquipmentType with value: ${value} not found!`);
     }
 
-    await EquipmentType.destroy({ where: { id } });
+    await EquipmentType.destroy({ where: { value } });
 
     return foundEquipmentType;
   },
