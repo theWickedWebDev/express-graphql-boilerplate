@@ -5,9 +5,9 @@ const {
 
 const { systemDateTypes, id } = require('./mixins');
 
-const BladeType = new GraphQLObjectType({
-  name: 'Blade',
-  description: 'This represents a Blade',
+const BrandType = new GraphQLObjectType({
+  name: 'Brand',
+  description: 'This represents a BrandType',
   fields: () => ({
     ...id,
     value: { type: GraphQLString },
@@ -15,4 +15,5 @@ const BladeType = new GraphQLObjectType({
   }),
 });
 
-module.exports = { BladeType };
+module.exports = { BrandType };
+

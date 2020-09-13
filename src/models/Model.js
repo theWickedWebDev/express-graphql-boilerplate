@@ -10,6 +10,7 @@ const {
 } = require('./mixins');
 
 const { LawnMower } = require('./LawnMower');
+const { Motor } = require('./Motor');
 
 const tableName = 'models';
 
@@ -27,6 +28,11 @@ Model.beforeCreate(setIdUuid);
 Model.afterUpdate(setUpdatedAt);
 
 Model.hasMany(LawnMower, {
+  foreignKey: 'modelId',
+  constraints: false,
+});
+
+Model.hasMany(Motor, {
   foreignKey: 'modelId',
   constraints: false,
 });

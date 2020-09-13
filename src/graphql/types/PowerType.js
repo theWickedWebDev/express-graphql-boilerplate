@@ -9,7 +9,7 @@ const PowerType = new GraphQLObjectType({
   name: 'Power',
   description: 'This represents a Power',
   fields: () => ({
-    id,
+    ...id,
     type: { type: GraphQLString },
     ...systemDateTypes,
   }),

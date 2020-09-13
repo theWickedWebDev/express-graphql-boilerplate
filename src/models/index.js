@@ -8,6 +8,7 @@ const { Power } = require('./Power');
 const { Property } = require('./Property');
 const { User } = require('./User');
 const { Zone } = require('./Zone');
+const { Motor } = require('./Motor');
 
 module.exports = {
   Blade,
@@ -20,4 +21,5 @@ module.exports = {
   Property,
   User,
   Zone,
+  Motor,
 };

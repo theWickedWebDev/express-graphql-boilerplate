@@ -4,6 +4,10 @@ const { powerQuery } = require('./PowerQuery');
 const { userQuery } = require('./UserQuery');
 const { propertyQuery } = require('./PropertyQuery');
 const { lawnMowerQuery } = require('./LawnMowerQuery');
+const { lawnQuery } = require('./LawnQuery');
+const { modelQuery } = require('./ModelQuery');
+const { brandQuery } = require('./BrandQuery');
+const { motorQuery } = require('./MotorQuery');
 
 module.exports = {
   bladeQuery,
@@ -12,4 +16,8 @@ module.exports = {
   userQuery,
   propertyQuery,
   lawnMowerQuery,
+  lawnQuery,
+  modelQuery,
+  brandQuery,
+  motorQuery,
 };

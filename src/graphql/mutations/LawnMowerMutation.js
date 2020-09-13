@@ -1,3 +1,8 @@
+// TODO:
+/*
+  There are a LOT of shared resolver functions here that need to be
+  extracted and shared - DRY
+ */
 const {
   GraphQLString,
   GraphQLBoolean,
@@ -11,7 +16,10 @@ const { LawnMowerType } = require('../types');
 const models = require('../../models');
 
 const OPTIONAL_LAWN_MOWER_ARGS = {
-  power: { type: GraphQLString },
+  modelId: { type: GraphQLID },
+  motorId: { type: GraphQLID },
+  bladeId: { type: GraphQLID },
+  powerId: { type: GraphQLID },
   name: { type: GraphQLString },
   minimumCutHeight: { type: GraphQLFloat },
   maximumCutHeight: { type: GraphQLFloat },
@@ -31,10 +39,19 @@ const createLawnMower = {
   type: LawnMowerType,
   description: 'The mutation that allows you to create a new LawnMower',
   args: {
+    propertyId: { type: new GraphQLNonNull(GraphQLID) },
     ...OPTIONAL_LAWN_MOWER_ARGS,
   },
   resolve: async (_, args) => {
-    const { power, ...newBody } = args;
+    const { propertyId, modelId, powerId, motorId, bladeId, ...newBody } = args;
+
+    const property = await models.Property.findByPk(propertyId);
+
+    if (property) {
+      newBody.propertyId = property.id;
+    } else {
+      throw new Error('Cannot find property with ID: ' + propertyId);
+    }
 
     const equipmentType = await models.EquipmentType.findOne({
       where: { value: 'MOWER' },
@@ -46,13 +63,46 @@ const createLawnMower = {
       throw new Error('Cannot find equipmentType "MOWER"');
     }
 
-    if (power) {
-      const powerType = await models.Power.findOne({where: { type: power }});
+    if (powerId) {
+      const powerType = await models.Power.findByPk(powerId);
       if (powerType) {
         newBody.powerId = powerType.id;
       } else {
         throw new Error(
-          'Cannot find power of type: ' + power
+          'Cannot find power: ' + powerId
+        );
+      }
+    }
+
+    if (modelId) {
+      const model = await models.Model.findByPk(modelId);
+      if (model) {
+        newBody.modelId = model.id;
+      } else {
+        throw new Error(
+          'Cannot find model: ' + modelId
+        );
+      }
+    }
+
+    if (motorId) {
+      const motor = await models.Motor.findByPk(motorId);
+      if (motor) {
+        newBody.motorId = motor.id;
+      } else {
+        throw new Error(
+          'Cannot find motor: ' + motorId
+        );
+      }
+    }
+
+    if (bladeId) {
+      const blade = await models.Blade.findByPk(bladeId);
+      if (blade) {
+        newBody.bladeId = blade.id;
+      } else {
+        throw new Error(
+          'Cannot find blade: ' + bladeId
         );
       }
     }
@@ -72,17 +122,55 @@ const updateLawnMower = {
     ...OPTIONAL_LAWN_MOWER_ARGS,
   },
   resolve: async (_, args) => {
-    const { id, ...rest } = args;
+    const { id, modelId, powerId, motorId, ...newBody } = args;
 
     const foundLawnMower = await models.LawnMower.findByPk(id);
 
     if (!foundLawnMower) {
       throw new Error(`LawnMower with id: ${id} not found!`);
     } else {
-      models.LawnMower.update(rest, { where: { id }});
+      models.LawnMower.update(newBody, { where: { id }});
     }
 
-    return merge(foundLawnMower, rest);
+    if (powerId) {
+      const powerType = await models.Power.findByPk(powerId);
+      if (powerType) {
+        newBody.powerId = powerType.id;
+      } else {
+        throw new Error(
+          'Cannot find power: ' + powerId
+        );
+      }
+    }
+
+    if (modelId) {
+      const model = await models.Model.findByPk(modelId);
+      if (model) {
+        newBody.modelId = model.id;
+      } else {
+        throw new Error(
+          'Cannot find model: ' + modelId
+        );
+      }
+    }
+
+    if (motorId) {
+      const motor = await models.Motor.findByPk(motorId);
+      console.log(motor, 'bang motor');
+      if (motor) {
+        newBody.motorId = motor.id;
+      } else {
+        throw new Error(
+          'Cannot find motor: ' + motorId
+        );
+      }
+    }
+
+    console.log(motorId, 'bang motorId');
+
+    console.log(newBody, 'bang newBody');
+
+    return merge(foundLawnMower, newBody);
   },
 };
 

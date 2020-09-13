@@ -1,5 +1,11 @@
 const { GraphQLString } = require('graphql');
 
+const id = {
+  id: {
+    type: GraphQLString,
+  }
+};
+
 const systemDateTypes = {
   createdAt: {
     type: GraphQLString,
@@ -11,8 +17,7 @@ const systemDateTypes = {
   },
 };
 
-const id = {
-  type: GraphQLString,
+module.exports = {
+  systemDateTypes,
+  id,
 };
-
-module.exports = { systemDateTypes, id };
