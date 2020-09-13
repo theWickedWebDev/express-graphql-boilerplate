@@ -13,7 +13,9 @@ const modelQuery = {
     id: { type: GraphQLInt },
     value: { type: GraphQLString },
   },
-  resolve: (user, args) => Model.findAll({ where: args }),
+  resolve: (user, args) => {
+    return Model.findAll({where: args})
+  },
 };
 
 module.exports = { modelQuery };

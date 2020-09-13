@@ -8,6 +8,7 @@ const { LawnType } = require('./LawnType');
 const { BrandType } = require('./BrandType');
 const { ModelType } = require('./ModelType');
 const { MotorType } = require('./MotorType');
+const { ZoneType } = require('./ZoneType');
 
 module.exports = {
   BladeType,
@@ -20,4 +21,5 @@ module.exports = {
   BrandType,
   ModelType,
   MotorType,
+  ZoneType,
 };

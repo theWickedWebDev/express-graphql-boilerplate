@@ -19,7 +19,7 @@ const bladeQuery = {
       type: GraphQLString,
     },
   },
-  resolve: (user, args) => Blade.findAll({ where: args }),
+  resolve: (user, args, context) => Blade.findAll({ where: args }),
 };
 
 module.exports = { bladeQuery };

@@ -16,6 +16,7 @@ const config = require('../config/');
 const auth = require('./policies/auth.policy');
 const dbService = require('./services/db.service');
 const { schema } = require('./graphql');
+const { User } = require('./models');
 
 // environment: development, testing, production
 const environment = process.env.NODE_ENV;
@@ -56,6 +57,28 @@ if (config.useAuthentication) {
 
 const graphQLServer = new ApolloServer({
   schema,
+  context: async ({ req }) => {
+    // Note! This example uses the `req` object to access headers,
+    // but the arguments received by `context` vary by integration.
+    // This means they will vary for Express, Koa, Lambda, etc.!
+    //
+    // To find out the correct arguments for a specific integration,
+    // see the `context` option in the API reference for `apollo-server`:
+    // https://www.apollographql.com/docs/apollo-server/api/apollo-server/
+
+    // Get the user token from the headers.
+    const token = req.headers.authorization || '';
+
+    const user = await User.findOne();
+    // try to retrieve a user with the token
+    //$ curl -i -H "Content-Type:application/json" -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Ijc1MDAxY2YzLTU4Y2QtNGFkMC1iZjEwLTkwNzk2MzY0ZjU0NyIsImlhdCI6MTYwMDAyNjU3NiwiZXhwIjoxNjAwMDM3Mzc2fQ.oU97J7giTEDTMLTxfiLn8suwvVOD5Q5Fw0gJE0qBFSc" -X POST -d '{"query": "{userQuery{id, firstName, lastName, email}}"}'  http://localhost:2017/graphql
+    //const user = getUser(token);
+    console.log('BANG BANG');
+    console.log(user.id);
+    console.log('BANG BANG');
+    // add the userId to the context
+    return { user: { id: user.id } };
+  },
 });
 
 graphQLServer.applyMiddleware({

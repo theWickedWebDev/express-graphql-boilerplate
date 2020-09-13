@@ -8,6 +8,7 @@ const LawnMutation = require('./LawnMutation');
 const BrandMutation = require('./BrandMutation');
 const ModelMutation = require('./ModelMutation');
 const MotorMutation = require('./MotorMutation');
+const ZoneMutation = require('./ZoneMutation');
 
 module.exports = {
   ...BladeMutation,
@@ -20,4 +21,5 @@ module.exports = {
   ...BrandMutation,
   ...ModelMutation,
   ...MotorMutation,
+  ...ZoneMutation,
 };

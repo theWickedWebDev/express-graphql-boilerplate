@@ -156,7 +156,6 @@ const updateLawnMower = {
 
     if (motorId) {
       const motor = await models.Motor.findByPk(motorId);
-      console.log(motor, 'bang motor');
       if (motor) {
         newBody.motorId = motor.id;
       } else {
@@ -165,10 +164,6 @@ const updateLawnMower = {
         );
       }
     }
-
-    console.log(motorId, 'bang motorId');
-
-    console.log(newBody, 'bang newBody');
 
     return merge(foundLawnMower, newBody);
   },

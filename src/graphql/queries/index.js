@@ -8,6 +8,7 @@ const { lawnQuery } = require('./LawnQuery');
 const { modelQuery } = require('./ModelQuery');
 const { brandQuery } = require('./BrandQuery');
 const { motorQuery } = require('./MotorQuery');
+const { zoneQuery } = require('./ZoneQuery');
 
 module.exports = {
   bladeQuery,
@@ -20,4 +21,5 @@ module.exports = {
   modelQuery,
   brandQuery,
   motorQuery,
+  zoneQuery,
 };

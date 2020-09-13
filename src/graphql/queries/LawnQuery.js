@@ -1,5 +1,5 @@
 const {
-  GraphQLInt,
+  GraphQLID,
   GraphQLString,
   GraphQLList,
 } = require('graphql');
@@ -10,7 +10,7 @@ const { Lawn } = require('../../models');
 const lawnQuery = {
   type: new GraphQLList(LawnType),
   args: {
-    id: { type: GraphQLInt },
+    id: { type: GraphQLID },
     propertyId: { type: GraphQLString },
     name: { type: GraphQLString },
   },
