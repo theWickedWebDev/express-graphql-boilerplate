@@ -19,9 +19,7 @@ const createBlade = {
     },
   },
   resolve: (_, { value }) => (
-    Blade.create({
-      value,
-    })
+    Blade.create({ value })
   ),
 };
 

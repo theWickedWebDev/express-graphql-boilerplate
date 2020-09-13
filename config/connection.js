@@ -7,7 +7,7 @@ const development = {
 };
 
 const testing = {
-  database: 'lawn_care',
+  database: 'lawn_care_test',
   username: 'root',
   password: 'password',
   host: '127.0.0.1',

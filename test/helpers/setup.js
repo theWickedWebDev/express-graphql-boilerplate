@@ -5,14 +5,14 @@ const { ApolloServer } = require('apollo-server-express');
 
 const config = require('../../config/');
 const database = require('../../config/database');
-const auth = require('../../api/policies/auth.policy');
-const { schema } = require('../../api/graphql');
+const auth = require('../../src/policies/auth.policy');
+const { schema } = require('../../src/graphql');
 
 process.env.NODE_ENV = 'testing';
 
 const beforeAction = async () => {
   const testapp = express();
-  const mappedOpenRoutes = mapRoutes(config.publicRoutes, 'api/controllers/');
+  const mappedOpenRoutes = mapRoutes(config.publicRoutes, 'src/controllers/');
 
   testapp.use(bodyParser.urlencoded({ extended: false }));
   testapp.use(bodyParser.json());

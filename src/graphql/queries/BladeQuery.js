@@ -1,6 +1,7 @@
 const {
   GraphQLInt,
   GraphQLList,
+  GraphQLString,
 } = require('graphql');
 
 const { BladeType } = require('../types');
@@ -15,7 +16,7 @@ const bladeQuery = {
     },
     value: {
       name: 'value',
-      type: GraphQLInt,
+      type: GraphQLString,
     },
   },
   resolve: (user, args) => Blade.findAll({ where: args }),
