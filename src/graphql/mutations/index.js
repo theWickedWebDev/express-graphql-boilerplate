@@ -3,6 +3,7 @@ const PowerMutation = require('./PowerMutation');
 const EquipmentTypeMutation = require('./EquipmentTypeMutation');
 const UserMutation = require('./UserMutation');
 const PropertyMutation = require('./PropertyMutation');
+const LawnMowerMutation = require('./LawnMowerMutation');
 
 module.exports = {
   ...BladeMutation,
@@ -10,4 +11,5 @@ module.exports = {
   ...PowerMutation,
   ...UserMutation,
   ...PropertyMutation,
+  ...LawnMowerMutation,
 };

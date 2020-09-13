@@ -1,6 +1,5 @@
 const { Blade } = require('./Blade');
 const { Brand } = require('./Brand');
-const { Equipment } = require('./Equipment');
 const { EquipmentType } = require('./EquipmentType');
 const { Lawn } = require('./Lawn');
 const { LawnMower } = require('./LawnMower');
@@ -13,7 +12,6 @@ const { Zone } = require('./Zone');
 module.exports = {
   Blade,
   Brand,
-  Equipment,
   EquipmentType,
   Lawn,
   LawnMower,

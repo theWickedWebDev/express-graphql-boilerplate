@@ -5,7 +5,7 @@ const {
 } = require('graphql');
 
 const { PropertyType } = require('../types');
-const { Property } = require('../../models/Property');
+const { Property } = require('../../models');
 
 const propertyQuery = {
   type: new GraphQLList(PropertyType),

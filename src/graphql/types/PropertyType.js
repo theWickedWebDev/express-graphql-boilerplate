@@ -6,7 +6,7 @@ const {
 
 const { systemDateTypes, id } = require('./mixins');
 
-const { EquipmentType } = require('./EquipmentType');
+const { LawnMowerType } = require('./LawnMowerType');
 
 const PropertyType = new GraphQLObjectType({
   name: 'Property',
@@ -14,7 +14,7 @@ const PropertyType = new GraphQLObjectType({
   fields: () => ({
     id,
     name: { type: GraphQLString },
-    equipment: { type: new GraphQLList(EquipmentType)},
+    lawnMowers: { type: new GraphQLList(LawnMowerType)},
     ...systemDateTypes,
   }),
 });

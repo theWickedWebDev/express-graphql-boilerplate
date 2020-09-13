@@ -10,7 +10,7 @@ const {
 } = require('./mixins');
 
 const { Lawn } = require('./Lawn');
-const { Equipment } = require('./Equipment');
+const { LawnMower } = require('./LawnMower');
 
 const tableName = 'properties';
 
@@ -32,7 +32,7 @@ Property.hasMany(Lawn, {
   constraints: false,
 });
 
-Property.hasMany(Equipment, {
+Property.hasMany(LawnMower, {
   foreignKey: 'propertyId',
   constraints: false,
 });

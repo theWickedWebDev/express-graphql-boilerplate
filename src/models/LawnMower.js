@@ -1,11 +1,11 @@
 const Sequelize = require('sequelize');
-const { systemDateTypes, setUpdatedAt, createdBy } = require('./mixins');
+const { systemDateTypes, setUpdatedAt, createdBy, id } = require('./mixins');
 const sequelize = require('../../config/database');
-const { Equipment } = require('./Equipment');
 
 const tableName = 'lawn_mowers';
 
 const LawnMower = sequelize.define('LawnMower', {
+  id,
   name: { type: Sequelize.STRING },
   minimumCutHeight: { type: Sequelize.FLOAT },
   maximumCutHeight: { type: Sequelize.FLOAT },
@@ -25,6 +25,5 @@ const LawnMower = sequelize.define('LawnMower', {
 }, { tableName });
 
 LawnMower.afterUpdate(setUpdatedAt);
-LawnMower.belongsTo(Equipment, { foreignKey: 'id', constraints: false });
 
 module.exports = { LawnMower };
