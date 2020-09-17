@@ -9,30 +9,34 @@ const merge = require('lodash.merge');
 const { ZoneType } = require('../types');
 const models = require('../../models');
 
+const responseUnion = require('./responseUnion');
+const getErrorResponseUnion = responseUnion.getErrorResponseUnion;
+const type = getErrorResponseUnion(ZoneType);
+
 const createZone = {
-  type: ZoneType,
+  type: type,
   description: 'The mutation that allows you to create a new Zone',
   args: {
-    lawnId: { type: new GraphQLNonNull(GraphQLID) },
+    userLawnId: { type: new GraphQLNonNull(GraphQLID) },
     name: { type: new GraphQLNonNull(GraphQLString)},
   },
   resolve: async (_, args) => {
-    const { lawnId, ...newBody } = args;
+    const { userLawnId, ...newBody } = args;
 
-    const lawn = await models.Lawn.findByPk(lawnId);
+    const lawn = await models.UserLawn.findByPk(userLawnId);
 
     if (lawn) {
-      newBody.lawnId = lawn.id;
+      newBody.userLawnId = lawn.id;
     } else {
-      throw new Error('Cannot find lawn with ID: ' + lawnId);
+      throw new Error('Cannot find UserLawn with ID: ' + userLawnId);
     }
 
-    models.Zone.create(newBody)
+    return models.Zone.create(newBody)
   },
 };
 
 const updateZone = {
-  type: ZoneType,
+  type: type,
   description: 'The mutation that allows you to update an existing Zone by Id',
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
@@ -52,7 +56,7 @@ const updateZone = {
 };
 
 const deleteZone = {
-  type: ZoneType,
+  type: type,
   description: 'The mutation that allows you to delete a existing Zone by Id',
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },

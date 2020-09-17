@@ -11,6 +11,7 @@ const modelQuery = {
   type: new GraphQLList(ModelType),
   args: {
     id: { type: GraphQLInt },
+    name: { type: GraphQLString },
     value: { type: GraphQLString },
   },
   resolve: (user, args) => {

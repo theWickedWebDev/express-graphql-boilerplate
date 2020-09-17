@@ -20,7 +20,6 @@ const OPTIONAL_LAWN_MOWER_ARGS = {
   motorId: { type: GraphQLID },
   bladeId: { type: GraphQLID },
   powerId: { type: GraphQLID },
-  name: { type: GraphQLString },
   minimumCutHeight: { type: GraphQLFloat },
   maximumCutHeight: { type: GraphQLFloat },
   cutWidth: { type: GraphQLFloat },
@@ -115,10 +114,7 @@ const updateLawnMower = {
   type: LawnMowerType,
   description: 'The mutation that allows you to update an existing LawnMower by Id',
   args: {
-    id: {
-      name: 'id',
-      type: new GraphQLNonNull(GraphQLID),
-    },
+    id: { type: new GraphQLNonNull(GraphQLID) },
     ...OPTIONAL_LAWN_MOWER_ARGS,
   },
   resolve: async (_, args) => {
@@ -174,7 +170,6 @@ const deleteLawnMower = {
   description: 'The mutation that allows you to delete a existing LawnMower by Id',
   args: {
     id: {
-      name: 'id',
       type: new GraphQLNonNull(GraphQLID),
     },
   },

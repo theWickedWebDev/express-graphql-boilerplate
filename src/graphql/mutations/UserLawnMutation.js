@@ -1,0 +1,86 @@
+const {
+  GraphQLString,
+  GraphQLInt,
+  GraphQLID,
+  GraphQLNonNull,
+} = require('graphql');
+const merge = require('lodash.merge');
+
+const { UserLawnType } = require('../types');
+const models = require('../../models');
+
+const responseUnion = require('./responseUnion');
+const getErrorResponseUnion = responseUnion.getErrorResponseUnion;
+const type = getErrorResponseUnion(UserLawnType);
+
+const OPTIONAL_ARGS = {
+  name: { type: GraphQLString},
+  sqft: { type: GraphQLInt },
+  galleryId: { type: GraphQLID },
+};
+
+const createUserLawn = {
+  type: type,
+  description: 'The mutation that allows you to create a new UserLawn',
+  args: {
+    propertyId: { type: new GraphQLNonNull(GraphQLID) },
+    ...OPTIONAL_ARGS
+  },
+  resolve: async (_, args, { userId }) => {
+    const { propertyId, ...newBody } = args;
+
+    const property = await models.UserProperty.findByPk(propertyId);
+
+    if (property) {
+      newBody.userPropertyId = property.id;
+    } else {
+      throw new Error('Cannot find property with ID: ' + propertyId);
+    }
+
+    return models.UserLawn.create({...newBody, userId})
+  },
+};
+
+const updateUserLawn = {
+  type: type,
+  description: 'The mutation that allows you to update an existing Property by Id',
+  args: {
+    id: { type: new GraphQLNonNull(GraphQLID) },
+    ...OPTIONAL_ARGS
+  },
+  resolve: async (_, { id, ...newBody }, { userId }) => {
+    const foundLawn = await models.UserLawn.findByPk(id);
+    if (!foundLawn) {
+      throw new Error(`Lawn with id: ${id} not found!`);
+    }
+
+    await models.UserLawn.update(newBody, { where: { id, userId }});
+
+    return { id, ...foundLawn, ...newBody };
+  }
+};
+
+const deleteUserLawn = {
+  type: type,
+  description: 'The mutation that allows you to delete a existing Property by Id',
+  args: {
+    id: { type: new GraphQLNonNull(GraphQLID) },
+  },
+  resolve: async (_, { id }, { userId }) => {
+    const foundLawn = await models.UserLawn.findByPk(id);
+
+    if (!foundLawn) {
+      throw new Error(`UserLawn with id: ${id} not found!`);
+    }
+
+    await models.UserLawn.destroy({ where: { id, userId } });
+
+    return foundLawn;
+  },
+};
+
+module.exports = {
+  createUserLawn,
+  updateUserLawn,
+  deleteUserLawn,
+};

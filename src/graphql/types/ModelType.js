@@ -14,6 +14,7 @@ const ModelType = new GraphQLObjectType({
   fields: () => ({
     ...id,
     value: { type: GraphQLString },
+    name: { type: GraphQLString },
     brand: {
       type: BrandType,
       resolve: async (source) => (

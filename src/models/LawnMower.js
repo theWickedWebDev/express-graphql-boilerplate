@@ -6,7 +6,6 @@ const tableName = 'lawn_mowers';
 
 const LawnMower = sequelize.define('LawnMower', {
   id,
-  name: { type: Sequelize.STRING },
   minimumCutHeight: { type: Sequelize.FLOAT },
   maximumCutHeight: { type: Sequelize.FLOAT },
   cutWidth: { type: Sequelize.FLOAT },

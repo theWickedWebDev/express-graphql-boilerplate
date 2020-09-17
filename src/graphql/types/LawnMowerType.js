@@ -19,7 +19,6 @@ const LawnMowerType = new GraphQLObjectType({
   description: 'This represents a LawnMower',
   fields: () => ({
     ...id,
-    name: { type: GraphQLString },
     minimumCutHeight: { type: GraphQLFloat },
     maximumCutHeight: { type: GraphQLFloat },
     cutWidth: { type: GraphQLFloat },

@@ -9,6 +9,8 @@ const {
   createdBy,
 } = require('./mixins');
 
+const { UserLawn } = require('./UserLawn');
+
 const tableName = 'zones';
 
 const Zone = sequelize.define('Zone', {
@@ -16,6 +18,9 @@ const Zone = sequelize.define('Zone', {
   name: {
     type: Sequelize.STRING(36),
     unique: true,
+  },
+  userLawnId: {
+    type: Sequelize.UUID,
   },
   ...createdBy,
   ...systemDateTypes,

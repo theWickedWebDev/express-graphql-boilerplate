@@ -15,6 +15,7 @@ const createModel = {
   args: {
     brandId: { type: new GraphQLNonNull(GraphQLID) },
     value: { type: new GraphQLNonNull(GraphQLString) },
+    name: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: async (_, args) => {
     const { brandId, ...newBody } = args;
@@ -37,17 +38,17 @@ const updateModel = {
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
     value: { type: new GraphQLNonNull(GraphQLString) },
+    name: { type: new GraphQLNonNull(GraphQLString) },
   },
-  resolve: async (_, { id, value }) => {
+  resolve: async (_, { id, ...rest }) => {
     const foundModel = await Model.findByPk(id);
-
     if (!foundModel) {
-      throw new Error(`Model: [${value}] not found!`);
+      throw new Error(`Model: [${id}] not found!`);
     } else {
-      Model.update({ value }, { where: { id }});
+      await Model.update(rest, { where: { id }});
     }
 
-    return merge(foundModel, { value });
+    return merge(foundModel, rest);
   },
 };
 

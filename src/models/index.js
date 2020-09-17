@@ -1,25 +1,27 @@
 const { Blade } = require('./Blade');
 const { Brand } = require('./Brand');
 const { EquipmentType } = require('./EquipmentType');
-const { Lawn } = require('./Lawn');
+const { UserLawn } = require('./UserLawn');
 const { LawnMower } = require('./LawnMower');
 const { Model } = require('./Model');
 const { Power } = require('./Power');
-const { Property } = require('./Property');
+const { UserProperty } = require('./UserProperty');
 const { User } = require('./User');
 const { Zone } = require('./Zone');
 const { Motor } = require('./Motor');
+const { Gallery } = require('./Gallery');
 
 module.exports = {
   Blade,
   Brand,
   EquipmentType,
-  Lawn,
+  UserLawn,
   LawnMower,
   Model,
   Power,
-  Property,
+  UserProperty,
   User,
   Zone,
   Motor,
+  Gallery,
 };

@@ -16,6 +16,9 @@ const tableName = 'models';
 
 const Model = sequelize.define('Model', {
   id,
+  name: {
+    type: Sequelize.STRING(30),
+  },
   value: {
     type: Sequelize.STRING(30),
     unique: true,

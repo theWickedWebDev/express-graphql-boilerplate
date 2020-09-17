@@ -11,7 +11,8 @@ const {
 } = require('./mixins');
 
 const sequelize = require('../../config/database');
-const { Property } = require('./Property');
+const { UserProperty } = require('./UserProperty');
+const { Gallery } = require('./Gallery');
 
 const hooks = {
   beforeCreate(user) {
@@ -45,7 +46,12 @@ User.prototype.toJSON = function () {
   return values;
 };
 
-User.hasMany(Property, {
+User.hasMany(UserProperty, {
+  foreignKey: 'userId',
+  constraints: false,
+});
+
+User.hasMany(Gallery, {
   foreignKey: 'userId',
   constraints: false,
 });
