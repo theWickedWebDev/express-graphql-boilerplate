@@ -36,7 +36,11 @@ UserLawn.belongsTo(User, {
 });
 
 UserLawn.belongsTo(Gallery, {
-  foreignKey: 'galleryId',
+  foreignKey: {
+    name: 'galleryId',
+    fieldName: 'galleryId',
+    type: Sequelize.STRING(100),
+  },
   constraints: false,
 });
 

@@ -53,6 +53,7 @@ const updateUserLawn = {
     if (!foundLawn) {
       throw new Error(`Lawn with id: ${id} not found!`);
     }
+    console.log({ id, ...foundLawn, ...newBody }, 'bang newBody');
 
     await models.UserLawn.update(newBody, { where: { id, userId }});
 

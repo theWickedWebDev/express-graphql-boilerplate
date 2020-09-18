@@ -15,13 +15,8 @@ const tableName = 'zones';
 
 const Zone = sequelize.define('Zone', {
   id,
-  name: {
-    type: Sequelize.STRING(36),
-    unique: true,
-  },
-  userLawnId: {
-    type: Sequelize.UUID,
-  },
+  name: { type: Sequelize.STRING(36) },
+  userLawnId: { type: Sequelize.UUID },
   ...createdBy,
   ...systemDateTypes,
 }, { tableName });

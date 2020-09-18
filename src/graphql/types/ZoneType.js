@@ -4,6 +4,7 @@ const {
 } = require('graphql');
 
 const { systemDateTypes, id } = require('./mixins');
+const { UserLawnType } = require('./UserLawnType');
 
 const ZoneType = new GraphQLObjectType({
   name: 'Zone',
