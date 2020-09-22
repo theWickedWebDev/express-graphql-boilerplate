@@ -1,7 +1,8 @@
 const {
   GraphQLString,
-  GraphQLInt,
+  GraphQLFloat,
   GraphQLID,
+  GraphQLInt,
   GraphQLNonNull,
 } = require('graphql');
 const merge = require('lodash.merge');
@@ -19,6 +20,8 @@ const createZone = {
   args: {
     userLawnId: { type: new GraphQLNonNull(GraphQLID) },
     name: { type: new GraphQLNonNull(GraphQLString)},
+    sqft: { type: GraphQLFloat},
+    number: { type: GraphQLInt},
   },
   resolve: async (_, args) => {
     const { userLawnId, ...newBody } = args;
@@ -41,6 +44,8 @@ const updateZone = {
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
     name: { type: GraphQLString },
+    sqft: { type: GraphQLFloat},
+    number: { type: GraphQLInt},
   },
   resolve: async (_, { id, ...rest }) => {
     const foundZone = await models.Zone.findByPk(id);

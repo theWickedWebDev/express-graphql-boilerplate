@@ -17,7 +17,6 @@ const tableName = 'user_lawns';
 const UserLawn = sequelize.define('UserLawn', {
   id,
   name: { type: Sequelize.STRING },
-  sqft: { type: Sequelize.INTEGER },
   ...createdBy,
   ...systemDateTypes,
 }, { tableName });

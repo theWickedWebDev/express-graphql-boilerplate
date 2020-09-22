@@ -10,6 +10,7 @@ const { User } = require('./User');
 const { Zone } = require('./Zone');
 const { Motor } = require('./Motor');
 const { Gallery } = require('./Gallery');
+const { ZoneFeature } = require('./ZoneFeature');
 
 module.exports = {
   Blade,
@@ -22,6 +23,7 @@ module.exports = {
   UserProperty,
   User,
   Zone,
+  ZoneFeature,
   Motor,
   Gallery,
 };

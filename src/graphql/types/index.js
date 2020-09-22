@@ -10,6 +10,7 @@ const { ModelType } = require('./ModelType');
 const { MotorType } = require('./MotorType');
 const { ZoneType } = require('./ZoneType');
 const GalleryTypes = require('./GalleryType');
+const { ZoneFeatureType } = require('./ZoneFeatureType');
 
 module.exports = {
   BladeType,

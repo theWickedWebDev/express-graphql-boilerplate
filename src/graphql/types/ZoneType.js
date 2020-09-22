@@ -1,10 +1,13 @@
 const {
   GraphQLObjectType,
+  GraphQLList,
   GraphQLString,
+  GraphQLFloat,
+  GraphQLInt,
 } = require('graphql');
 
 const { systemDateTypes, id } = require('./mixins');
-const { UserLawnType } = require('./UserLawnType');
+const { ZoneFeature } = require('../../models');
 
 const ZoneType = new GraphQLObjectType({
   name: 'Zone',
@@ -12,6 +15,23 @@ const ZoneType = new GraphQLObjectType({
   fields: () => ({
     ...id,
     name: { type: GraphQLString },
+    sqft: { type: GraphQLFloat },
+    number: { type: GraphQLInt },
+    zoneFeatures: {
+      type: new GraphQLList(new GraphQLList(GraphQLFloat)),
+      resolve: async (source) => {
+        const zoneFeatures = await ZoneFeature.findAll({
+          where: { zoneId: source.id },
+        });
+
+        return zoneFeatures
+          .sort((a, b) => a.order - b.order)
+          .reduce((acc, cur) => {
+            acc.push(cur.geometry.coordinates);
+            return acc;
+          }, []);
+      }
+    },
     ...systemDateTypes,
   }),
 });

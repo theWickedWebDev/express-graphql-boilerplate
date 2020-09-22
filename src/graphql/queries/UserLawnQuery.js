@@ -5,7 +5,7 @@ const {
 } = require('graphql');
 
 const { UserLawnType } = require('../types');
-const { UserLawn, UserProperty } = require('../../models');
+const { UserLawn } = require('../../models');
 
 const userLawnQuery = {
   type: new GraphQLList(UserLawnType),
@@ -19,6 +19,7 @@ const userLawnQuery = {
     return UserLawn.findAll({
       where: {
         ...args,
+        userId,
       }
     });
   },

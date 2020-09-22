@@ -10,6 +10,7 @@ const ModelMutation = require('./ModelMutation');
 const MotorMutation = require('./MotorMutation');
 const ZoneMutation = require('./ZoneMutation');
 const GalleryMutation = require('./GalleryMutation');
+const ZoneFeatureMutation = require('./ZoneFeatureMutation');
 
 module.exports = {
   ...BladeMutation,
@@ -24,4 +25,5 @@ module.exports = {
   ...MotorMutation,
   ...ZoneMutation,
   ...GalleryMutation,
+  ...ZoneFeatureMutation,
 };

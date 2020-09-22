@@ -19,7 +19,6 @@ const UserLawnType = new GraphQLObjectType({
   fields: () => ({
     ...id,
     name: { type: GraphQLString },
-    sqft: { type: GraphQLInt },
     zones: {
       type: new GraphQLList(ZoneType),
       resolve: async (source) => {

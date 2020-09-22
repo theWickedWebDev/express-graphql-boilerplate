@@ -19,12 +19,12 @@ const zoneQuery = {
     //       DB schema
     const lawns = await models.UserLawn.findAll({where: { userId }});
     const userLawnIds = lawns.map(l => l.id);
-    console.log(userLawnIds, 'bang');
     return models.Zone.findAll({
       where: {
         ...args,
         userLawnId: userLawnIds,
-      }
+      },
+      order: [['number', 'DESC']]
     });
   },
 };
