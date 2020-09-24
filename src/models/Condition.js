@@ -8,9 +8,9 @@ const {
   setUpdatedAt,
 } = require('./mixins');
 
-const tableName = 'blades';
+const tableName = 'conditions';
 
-const Blade = sequelize.define('Blade', {
+const Condition = sequelize.define('Condition', {
   id,
   value: {
     type: Sequelize.STRING(30),
@@ -20,7 +20,7 @@ const Blade = sequelize.define('Blade', {
   ...systemDateTypes,
 }, { tableName });
 
-Blade.beforeCreate(setIdUuid);
-Blade.afterUpdate(setUpdatedAt);
+Condition.beforeCreate(setIdUuid);
+Condition.afterUpdate(setUpdatedAt);
 
-module.exports = { Blade };
+module.exports = { Condition };

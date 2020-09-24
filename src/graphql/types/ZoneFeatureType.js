@@ -9,7 +9,7 @@ const { systemDateTypes, id } = require('./mixins');
 
 const ZoneFeatureType = new GraphQLObjectType({
   name: 'ZoneFeature',
-  description: 'This represents a FeatureCollection (Turf.js or MapBox)',
+  description: 'This represents a FeatureCollection (Detail.jsjs or MapBox)',
   fields: () => ({
     geometry: {
       type: new GraphQLList(new GraphQLList(GraphQLFloat)),

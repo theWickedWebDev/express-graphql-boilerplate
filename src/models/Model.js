@@ -9,7 +9,6 @@ const {
   createdBy,
 } = require('./mixins');
 
-const { LawnMower } = require('./LawnMower');
 const { Motor } = require('./Motor');
 
 const tableName = 'models';
@@ -29,11 +28,6 @@ const Model = sequelize.define('Model', {
 
 Model.beforeCreate(setIdUuid);
 Model.afterUpdate(setUpdatedAt);
-
-Model.hasMany(LawnMower, {
-  foreignKey: 'modelId',
-  constraints: false,
-});
 
 Model.hasMany(Motor, {
   foreignKey: 'modelId',

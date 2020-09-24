@@ -6,8 +6,8 @@ const {
 } = require('graphql');
 
 const { systemDateTypes, id } = require('./mixins');
-const { LawnMowerType } = require('./LawnMowerType');
 const { UserLawnType } = require('./UserLawnType');
+const { UserEquipmentType } = require('./UserEquipmentType');
 const models = require('../../models');
 
 const UserPropertyType = new GraphQLObjectType({
@@ -23,10 +23,12 @@ const UserPropertyType = new GraphQLObjectType({
     city: { type: GraphQLString },
     state: { type: GraphQLString },
     country: { type: GraphQLString },
-    lawnMowers: {
-      type: new GraphQLList(LawnMowerType),
+    equipment: {
+      type: new GraphQLList(UserEquipmentType),
       resolve: async (source) => (
-        models.LawnMower.findAll({ where: { userPropertyId: source.id }})
+        models.UserEquipment.findAll({ where: {
+          userPropertyId: source.id,
+        }})
       ),
     },
     lawns: {

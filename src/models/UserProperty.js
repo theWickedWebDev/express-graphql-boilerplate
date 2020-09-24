@@ -9,8 +9,6 @@ const {
   createdBy,
 } = require('./mixins');
 
-const { LawnMower } = require('./LawnMower');
-
 const tableName = 'user_properties';
 
 const UserProperty = sequelize.define('UserProperty', {
@@ -38,10 +36,5 @@ const UserProperty = sequelize.define('UserProperty', {
 
 UserProperty.beforeCreate(setIdUuid);
 UserProperty.afterUpdate(setUpdatedAt);
-
-UserProperty.hasMany(LawnMower, {
-  foreignKey: 'userPropertyId',
-  constraints: false,
-});
 
 module.exports = { UserProperty };

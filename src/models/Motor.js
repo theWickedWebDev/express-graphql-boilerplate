@@ -8,8 +8,6 @@ const {
   setUpdatedAt,
 } = require('./mixins');
 
-const { LawnMower } = require('./LawnMower');
-
 const tableName = 'motors';
 
 const Motor = sequelize.define('Motor', {
@@ -23,10 +21,5 @@ const Motor = sequelize.define('Motor', {
 
 Motor.beforeCreate(setIdUuid);
 Motor.afterUpdate(setUpdatedAt);
-
-Motor.hasMany(LawnMower, {
-  foreignKey: 'motorId',
-  constraints: false,
-});
 
 module.exports = { Motor };

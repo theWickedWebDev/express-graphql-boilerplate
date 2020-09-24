@@ -2,7 +2,6 @@ const { BladeType } = require('./BladeType');
 const { EquipmentTypeType } = require('./EquipmentTypeType');
 const { PowerType } = require('./PowerType');
 const { UserType } = require('./UserType');
-const { LawnMowerType } = require('./LawnMowerType');
 const { UserPropertyType } = require('./UserPropertyType');
 const { UserLawnType } = require('./UserLawnType');
 const { BrandType } = require('./BrandType');
@@ -10,7 +9,11 @@ const { ModelType } = require('./ModelType');
 const { MotorType } = require('./MotorType');
 const { ZoneType } = require('./ZoneType');
 const GalleryTypes = require('./GalleryType');
-const { ZoneFeatureType } = require('./ZoneFeatureType');
+const { UserEquipmentType } = require('./UserEquipmentType');
+const { ConditionType } = require('./ConditionType');
+const { TurfType } = require('./TurfType');
+const { RatingEnumType } = require('./RatingEnumType');
+const { SeasonEnumType } = require('./SeasonEnumType');
 
 module.exports = {
   BladeType,
@@ -19,10 +22,14 @@ module.exports = {
   UserPropertyType,
   UserType,
   UserLawnType,
-  LawnMowerType,
   BrandType,
   ModelType,
   MotorType,
   ZoneType,
   ...GalleryTypes,
+  UserEquipmentType,
+  ConditionType,
+  TurfType,
+  RatingEnumType,
+  SeasonEnumType,
 };

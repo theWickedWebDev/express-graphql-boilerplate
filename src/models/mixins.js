@@ -19,24 +19,24 @@ const setIdUuid = (entry) => {
 
 /* YourModel.afterUpdate(setIdUuid); */
 const setUpdatedAt = (entry) => {
-  entry.updatedAt = Sequelize.literal('CURRENT_TIMESTAMP');
+  entry.updated_at = Sequelize.literal('CURRENT_TIMESTAMP');
 };
 
 const systemDateTypes = {
   created_at: {
-    name: 'createdAt',
+    name: 'created_at',
     type: Sequelize.DATE,
     defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
   },
   updated_at: {
-    name: 'updatedAt',
+    name: 'created_at',
     type: Sequelize.DATE,
   },
 };
 
 const createdBy = {
   created_by: {
-    name: 'createdBy',
+    name: 'created_by',
     type: Sequelize.UUID,
   },
 };

@@ -10,6 +10,7 @@ const {
 } = require('./mixins');
 
 const { UserLawn } = require('./UserLawn');
+const { Gallery } = require('./Gallery');
 
 const tableName = 'zones';
 
@@ -25,6 +26,16 @@ const Zone = sequelize.define('Zone', {
 
 Zone.beforeCreate(setIdUuid);
 Zone.afterUpdate(setUpdatedAt);
+
+Zone.belongsTo(Gallery, {
+  foreignKey: {
+    name: 'galleryId',
+    fieldName: 'galleryId',
+    type: Sequelize.STRING(100),
+  },
+  constraints: false,
+});
+
 Zone.associate = models => {
   Zone.hasMany(models.ZoneFeature, {
     foreignKey: 'id',

@@ -1,5 +1,5 @@
 const Sequelize = require('sequelize');
-const { systemDateTypes, setUpdatedAt, createdBy, id } = require('./mixins');
+const { systemDateTypes, setUpdatedAt, setIdUuid, createdBy, id } = require('./mixins');
 const sequelize = require('../../config/database');
 
 const tableName = 'lawn_mowers';
@@ -23,6 +23,7 @@ const LawnMower = sequelize.define('LawnMower', {
   ...systemDateTypes,
 }, { tableName });
 
+LawnMower.beforeCreate(setIdUuid);
 LawnMower.afterUpdate(setUpdatedAt);
 
 module.exports = { LawnMower };

@@ -11,6 +11,7 @@ const { Zone } = require('./Zone');
 const { UserProperty } = require('./UserProperty');
 const { User } = require('./User');
 const { Gallery } = require('./Gallery');
+const { UserTurf } = require('./UserTurf');
 
 const tableName = 'user_lawns';
 
@@ -31,6 +32,11 @@ UserLawn.belongsTo(UserProperty, {
 
 UserLawn.belongsTo(User, {
   foreignKey: 'userId',
+  constraints: false,
+});
+
+UserLawn.hasMany(UserTurf, {
+  foreignKey: 'userLawnId',
   constraints: false,
 });
 

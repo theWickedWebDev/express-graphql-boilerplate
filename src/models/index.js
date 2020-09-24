@@ -11,6 +11,11 @@ const { Zone } = require('./Zone');
 const { Motor } = require('./Motor');
 const { Gallery } = require('./Gallery');
 const { ZoneFeature } = require('./ZoneFeature');
+const { UserEquipment } = require('./UserEquipment');
+const { Equipment } = require('./Equipment');
+const { Condition } = require('./Condition');
+const { Turf } = require('./Turf');
+const { UserTurf } = require('./UserTurf');
 
 module.exports = {
   Blade,
@@ -26,4 +31,9 @@ module.exports = {
   ZoneFeature,
   Motor,
   Gallery,
+  UserEquipment,
+  Equipment,
+  Condition,
+  Turf,
+  UserTurf,
 };

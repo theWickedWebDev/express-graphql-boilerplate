@@ -8,6 +8,8 @@ const {
 
 const { systemDateTypes, id } = require('./mixins');
 const { ZoneFeature } = require('../../models');
+const { Gallery } = require('../../models');
+const { GalleryType } = require('./GalleryType');
 
 const ZoneType = new GraphQLObjectType({
   name: 'Zone',
@@ -31,6 +33,12 @@ const ZoneType = new GraphQLObjectType({
             return acc;
           }, []);
       }
+    },
+    image: {
+      type: GalleryType,
+      resolve: async (source) => (
+        Gallery.findByPk(source.galleryId)
+      ),
     },
     ...systemDateTypes,
   }),

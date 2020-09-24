@@ -3,6 +3,7 @@ const {
   GraphQLInt,
   GraphQLID,
   GraphQLNonNull,
+  GraphQLList,
 } = require('graphql');
 const merge = require('lodash.merge');
 
@@ -17,6 +18,7 @@ const OPTIONAL_ARGS = {
   name: { type: GraphQLString},
   sqft: { type: GraphQLInt },
   galleryId: { type: GraphQLID },
+  turfIds: { type: new GraphQLList(new GraphQLNonNull(GraphQLID))}
 };
 
 const createUserLawn = {
@@ -27,7 +29,7 @@ const createUserLawn = {
     ...OPTIONAL_ARGS
   },
   resolve: async (_, args, { userId }) => {
-    const { propertyId, ...newBody } = args;
+    const { propertyId, turfIds, ...newBody } = args;
 
     const property = await models.UserProperty.findByPk(propertyId);
 
@@ -37,7 +39,31 @@ const createUserLawn = {
       throw new Error('Cannot find property with ID: ' + propertyId);
     }
 
-    return models.UserLawn.create({...newBody, userId})
+    const createdUserLawn = await models.UserLawn.create({...newBody, userId})
+
+    if (turfIds) {
+      // do mutation for turf
+      async function asyncForEach(array, callback) {
+        for (let index = 0; index < array.length; index++) {
+          await callback(array[index], index, array);
+        }
+      }
+
+      const start = async () => {
+        await asyncForEach(turfIds, async turfId => {
+          await models.UserTurf.create({
+            userLawnId: createdUserLawn.id,
+            turfId,
+          });
+        });
+      };
+
+      await start();
+
+      return createdUserLawn;
+    }
+
+
   },
 };
 

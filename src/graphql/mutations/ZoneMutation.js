@@ -46,6 +46,7 @@ const updateZone = {
     name: { type: GraphQLString },
     sqft: { type: GraphQLFloat},
     number: { type: GraphQLInt},
+    galleryId: { type: GraphQLID},
   },
   resolve: async (_, { id, ...rest }) => {
     const foundZone = await models.Zone.findByPk(id);

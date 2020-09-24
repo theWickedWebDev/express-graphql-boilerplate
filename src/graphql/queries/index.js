@@ -3,14 +3,16 @@ const { equipmentTypeQuery } = require('./EquipmentTypeQuery');
 const { powerQuery } = require('./PowerQuery');
 const { userQuery } = require('./UserQuery');
 const { userPropertyQuery } = require('./UserPropertyQuery');
-const { lawnMowerQuery } = require('./LawnMowerQuery');
 const { userLawnQuery } = require('./UserLawnQuery');
 const { modelQuery } = require('./ModelQuery');
 const { brandQuery } = require('./BrandQuery');
 const { motorQuery } = require('./MotorQuery');
 const { zoneQuery } = require('./ZoneQuery');
 const { galleryQuery } = require('./GalleryQuery');
-const { zoneFeatureQuery } = require('./zoneFeatureQuery');
+const { zoneFeatureQuery } = require('./ZoneFeatureQuery');
+const { userEquipmentQuery } = require('./UserEquipmentQuery');
+const { conditionQuery } = require('./ConditionQuery');
+const { turfQuery } = require('./TurfQuery');
 
 module.exports = {
   bladeQuery,
@@ -18,7 +20,6 @@ module.exports = {
   powerQuery,
   userQuery,
   userPropertyQuery,
-  lawnMowerQuery,
   userLawnQuery,
   modelQuery,
   brandQuery,
@@ -26,4 +27,7 @@ module.exports = {
   zoneQuery,
   galleryQuery,
   zoneFeatureQuery,
+  userEquipmentQuery,
+  conditionQuery,
+  turfQuery,
 };
